@@ -1,12 +1,12 @@
 #include <iostream>
-#include "f128.h"
+#include "d128.h"
 
 
 using namespace std;
 
-class f128
+class d128
 {
-    private:
+    public:
         static int base;
 
         static void setBase(int base) 
@@ -14,7 +14,7 @@ class f128
             base = base;
         }
 
-        static void print_4s(f128 reg)
+        static void print_2d(d128 reg)
         {
 
         }
