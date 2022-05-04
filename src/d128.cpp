@@ -1,12 +1,12 @@
 #include <iostream>
+#include "d128.h"
 
-#define d128 __m128d
 
 using namespace std;
 
 class d128
 {
-    private:
+    public:
         static int base;
 
         static void setBase(int base) 

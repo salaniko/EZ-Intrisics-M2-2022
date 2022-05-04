@@ -1,6 +1,6 @@
 #include <iostream>
+#include "i128.h"
 
-#define i128 __m128i
 
 using namespace std;
 

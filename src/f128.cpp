@@ -1,6 +1,6 @@
 #include <iostream>
+#include "f128.h"
 
-#define f128 __m128
 
 using namespace std;
 
