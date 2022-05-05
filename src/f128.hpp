@@ -1,10 +1,10 @@
 // f128.h
 #include <emmintrin.h>
 
-// Redéfinition du type i128 vecteur SSE de 128 bits contenant 2 doubles
+// Redéfinition du type f128 vecteur SSE de 128 bits contenant 4 flottants
 #define f128 __m128
 
-class f128
+class F128
 {
     public:
         static int base;
