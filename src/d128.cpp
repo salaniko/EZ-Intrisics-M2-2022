@@ -1,21 +1,15 @@
 #include <iostream>
-#include "d128.h"
+#include "d128.hpp"
 
 
 using namespace std;
 
-class d128
+void D128::setBase(int base) 
 {
-    public:
-        static int base;
+    base = base;
+}
 
-        static void setBase(int base) 
-        {
-            base = base;
-        }
+void D128::print_2d(d128 reg)
+{
 
-        static void print_2d(d128 reg)
-        {
-
-        }
-};
+}

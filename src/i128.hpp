@@ -14,7 +14,7 @@
 #define i128_add_d( x, y ) _mm_add_epi32 ( (__m128i) x, (__m128i) y )
 #define i128_add_q( x, y ) _mm_add_epi64 ( (__m128i) x, (__m128i) y )
 
-class i128
+class I128
 {
     public:
         static int base;

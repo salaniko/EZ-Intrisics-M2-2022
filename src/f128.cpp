@@ -1,21 +1,16 @@
 #include <iostream>
-#include "f128.h"
+#include "f128.hpp"
 
 
 using namespace std;
 
-class f128
+
+void F128::setBase(int base) 
 {
-    private:
-        static int base;
+    base = base;
+}
 
-        static void setBase(int base) 
-        {
-            base = base;
-        }
+void F128::print_4s(f128 reg)
+{
 
-        static void print_4s(f128 reg)
-        {
-
-        }
-};
+}
