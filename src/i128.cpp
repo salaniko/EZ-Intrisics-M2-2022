@@ -1,7 +1,5 @@
 #include <iostream>
 #include "i128.h"
-
-
 using namespace std;
 
 class i128
