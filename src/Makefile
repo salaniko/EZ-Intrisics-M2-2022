@@ -6,7 +6,9 @@
 
 
 CC = g++
-OUT_FILE_NAME = ez_intrinsics.a
+LIB_FILE_NAME = ez_intrinsics.a
+
+EXE_FILE_NAME = main.exe
 
 CFLAGS= -fPIC -O0 -g -Wall -c -fpermissive
 
@@ -18,9 +20,11 @@ OBJ_DIR=../obj
 
 OUT_DIR=../lib
 
+BIN_DIR=../bin
+
 
 # Enumerating of every *.cpp as *.o and using that as dependency
-$(OUT_FILE_NAME): $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(wildcard *.cpp))
+$(LIB_FILE_NAME): $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(wildcard *.cpp))
 	ar -r -o $(OUT_DIR)/$@ $^
 
 #Compiling every *.cpp to *.o
