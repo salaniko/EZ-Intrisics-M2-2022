@@ -1,4 +1,4 @@
-#  Makefile template for Static library. 
+#  makefile template for Static library.
 # 1. Compile every *.cpp in the folder 
 # 2. All obj files under obj folder
 # 3. static library .a at lib folder
