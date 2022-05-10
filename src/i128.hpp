@@ -33,5 +33,5 @@ class I128
         static void print_16b(i128 _reg, int _base);
         static void print_8w(i128 _reg, int _base);
         static void print_4d(i128 _reg, int _base);
-        static void print_2q(i128 _reg, int base);
+        static void print_2q(i128 _reg, int _base);
 };

@@ -1,9 +1,3 @@
-#  makefile template for Static library.
-# 1. Compile every *.cpp in the folder 
-# 2. All obj files under obj folder
-# 3. static library .a at lib folder
-# 4. run 'make dirmake' before calling 'make'
-
 
 CC = g++
 LIB_FILE_NAME = ez_intrinsics.a
@@ -16,20 +10,25 @@ INC = -I../Import
 
 SRC_DIR=./src
 
-OBJ_DIR=../obj
+OBJ_DIR=./obj
 
-OUT_DIR=../lib
+OUT_DIR=./lib
 
-BIN_DIR=../bin
+BIN_DIR=./bin
+
+SRC_FILES := $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 
 # Enumerating of every *.cpp as *.o and using that as dependency
-$(LIB_FILE_NAME): $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(wildcard *.cpp))
-	ar -r -o $(OUT_DIR)/$@ $^
+#$(LIB_FILE_NAME): $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(wildcard *.cpp))
+#	ar -r -o $(OUT_DIR)/$@ $^
+
+$(EXE_FILE_NAME): $(OBJ_FILES)
+	$(CC) $^ -o $(BIN_DIR)/$@
 
 #Compiling every *.cpp to *.o
-$(OBJ_DIR)/%.o: %.cpp dirmake
-	@echo "$@"
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp dirmake
 	$(CC) -c $(INC) $(CFLAGS) -o $@  $<
 	
 dirmake:
