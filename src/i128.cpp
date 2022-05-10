@@ -4,12 +4,7 @@
 #include <inttypes.h>
 #include "i128.hpp"
 
-#ifndef __cplusplus
-#include <stdalign.h>   //C11 defines _Alignas().  This header defines alignas()
-#endif
-
 using namespace std;
-
 
 void I128::print_16b(i128 _reg, int _base)
 {
