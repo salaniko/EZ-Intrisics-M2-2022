@@ -18,7 +18,7 @@ void I128::print_16b(i128 _reg, int _base)
         case 2:
             int a;
             printf("Binary: ");
-            for(int i=0; i<16; i++)
+            for(int i=15; i>=0; i--)
             {
                 for (int j = 7; j >= 0; j--)
                 {
@@ -36,14 +36,14 @@ void I128::print_16b(i128 _reg, int _base)
 
         case 10:
             printf("Numerical: %i %i %i %i | %i %i %i %i | %i %i %i %i | %i %i %i %i\n",
-                val[0], val[1], val[2], val[3], val[4], val[5], val[6], val[7], 
-                val[8], val[9], val[10], val[11], val[12], val[13], val[14], val[15]);
+                val[15], val[14], val[13], val[12], val[11], val[10], val[9], val[8], 
+                val[7], val[6], val[5], val[4], val[3], val[2], val[1], val[0]);
             break;
         
         case 16:
             printf("Hexadecimal: %#x %#x %#x %#x | %#x %#x %#x %#x | %#x %#x %#x %#x | %#x %#x %#x %#x\n",
-                val[0], val[1], val[2], val[3], val[4], val[5], val[6], val[7], 
-                val[8], val[9], val[10], val[11], val[12], val[13], val[14], val[15]);
+                val[15], val[14], val[13], val[12], val[11], val[10], val[9], val[8], 
+                val[7], val[6], val[5], val[4], val[3], val[2], val[1], val[0]);
             break;
         
         default:
@@ -61,7 +61,7 @@ void I128::print_8w(i128 _reg, int _base)
         case 2:
             int a;
             printf("Binary: ");
-            for(int i=0; i<8; i++)
+            for(int i=7; i<=0; i++)
             {
                 for (int j = 15; j >= 0; j--)
                 {
@@ -79,12 +79,12 @@ void I128::print_8w(i128 _reg, int _base)
 
         case 10:
             printf("Numerical: %i %i %i %i %i %i %i %i\n",
-                val[0], val[1], val[2], val[3], val[4], val[5], val[6], val[7]);
+                val[7], val[6], val[5], val[4], val[3], val[2], val[1], val[0]);
             break;
         
         case 16:
             printf("Hexadecimal: %#x %#x %#x %#x %#x %#x %#x %#x\n",
-                val[0], val[1], val[2], val[3], val[4], val[5], val[6], val[7]);
+                val[7], val[6], val[5], val[4], val[3], val[2], val[1], val[0]);
             break;
         
         default:
@@ -102,7 +102,7 @@ void I128::print_4d(i128 _reg, int _base)
         case 2:
             int a;
             printf("Binary: ");
-            for(int i=0; i<4; i++)
+            for(int i=3; i<=0; i++)
             {
                 for (int j = 31; j >= 0; j--)
                 {
@@ -120,12 +120,12 @@ void I128::print_4d(i128 _reg, int _base)
 
         case 10:
             printf("Numerical: %i %i %i %i\n",
-                val[0], val[1], val[2], val[3]);
+                val[3], val[2], val[1], val[0]);
             break;
         
         case 16:
             printf("Hexadecimal: %#x %#x %#x %#x\n",
-                val[0], val[1], val[2], val[3]);
+                val[3], val[2], val[1], val[0]);
             break;
         
         default:
@@ -143,9 +143,9 @@ void I128::print_2q(i128 _reg, int _base)
         case 2:
             int a;
             printf("Binary: ");
-            for(int i=0; i<64; i++)
+            for(int i=1; i>=0; i++)
             {
-                for (int j = 7; j >= 0; j--)
+                for (int j = 63; j >= 0; j--)
                 {
                     a = val[i] >> j;
 
@@ -161,12 +161,12 @@ void I128::print_2q(i128 _reg, int _base)
 
         case 10:
             printf("Numerical: %" PRId64 "%" PRId64 "\n",
-                val[0], val[1]);
+                val[1], val[0]);
             break;
         
         case 16:
             printf("Hexadecimal: %" PRIx64 "%" PRIx64 "\n",
-                val[0], val[1]);
+                val[1], val[0]);
             break;
         
         default:
