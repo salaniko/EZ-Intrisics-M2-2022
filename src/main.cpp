@@ -3,7 +3,7 @@
 #include <string.h>
 #include <inttypes.h>
 #include <math.h>
-#include <vector>
+#include <sys/time.h>
 
 #include "i128.hpp"
 #include "f128.hpp"
@@ -11,10 +11,19 @@
 
 using namespace std;
 
+double getCurrentTime(){
+  struct timeval curr;
+  struct timezone tz;
+  gettimeofday(&curr, &tz);
+  double tmp = static_cast<double>(curr.tv_sec) * static_cast<double>(1000000)
+             + static_cast<double>(curr.tv_usec);
+  return tmp*1e-6;
+}
 
 void test_i128()
 {
     srand48(0);
+    double e, s;
     int32_t *a, *b, *c;
     int32_t *pA, *pB, *pC;
     i128 rA, rB, rC;
@@ -33,6 +42,7 @@ void test_i128()
 
     pA = a; pB = b, pC = c;
 
+    s = getCurrentTime();
     for (int i=0; i<vector_size; i+=4)
     {
         rA = i128_lda(pA);
@@ -43,6 +53,14 @@ void test_i128()
         pB += 4;
         pC += 4;
     }
+    e = getCurrentTime();
+
+    cout << "Test i128: " << (e-s)*1000 << " ms\n";
+
+    _mm_free(a);
+    _mm_free(b);
+    _mm_free(c);
+
 }
 
 void test_f128()
