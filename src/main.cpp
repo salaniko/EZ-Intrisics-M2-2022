@@ -29,13 +29,14 @@ int main(int argc, char const *argv[])
     i128 reg_add = i128_add_d( reg_d1, reg_d2 );
     I128::print_4d(reg_add, 10);
 
-    //Creation d'un objet
-    D128 reg_double;
+    //Creation d'un objet D128
+    D128 registre_double;
 
+    //Initialisation du registre avec 2 doubles
     d128 reg2;
     reg2 = d128_set(1.5, 0.8);
 
-    reg_double.print_2d(reg2,16);
+    registre_double.print_2d(reg2,10);
 
     return 0;
 }
