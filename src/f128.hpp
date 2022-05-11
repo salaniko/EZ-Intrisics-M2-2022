@@ -9,9 +9,9 @@
 #define f128_ldu(x)   _mm_loadu_ps  ((__m128 *) x)
 
 // Redéfinition des fonctions d'initialisation de vecteur
-#define f128_set( i0, i1, i2, i3 )  mm_set_ps   ((float) i0, (float) i1, (float) i2, (float) i3)    //normal
-#define f128_set_r(i0, i1, i2, i3 ) _mm_setr_ps ((float) i0, (float) i1, (float) i2, (float) i3)    //reverse
-#define f128_set_zero() _mm_setzero_ps()                                                            //empty
+#define f128_set( i0, i1, i2, i3 ) _mm_set_ps  ((float) i0, (float) i1, (float) i2, (float) i3)    //normal
+#define f128_setr(i0, i1, i2, i3 ) _mm_setr_ps ((float) i0, (float) i1, (float) i2, (float) i3)    //reverse
+#define f128_setzero() _mm_setzero_ps()                                                            //empty
 
 // Redéfinition des fonctions d'addition parallèle de vecteurs
 #define f128_add( x, y )    _mm_add_ps    ( (__m128) x, (__m128) y )
@@ -35,5 +35,5 @@
 class F128
 {
     public:
-        static void print_4f(f128 reg, int base);
+        static void print_4f(f128 reg, int base = 16);
 };

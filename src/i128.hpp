@@ -30,8 +30,8 @@
 class I128
 {
     public:
-        static void print_16b(i128 _reg, int _base);
-        static void print_8w(i128 _reg, int _base);
-        static void print_4d(i128 _reg, int _base);
-        static void print_2q(i128 _reg, int _base);
+        static void print_16b(i128 _reg, int _base = 16);
+        static void print_8w(i128 _reg, int _base = 16);
+        static void print_4d(i128 _reg, int _base = 16);
+        static void print_2q(i128 _reg, int _base = 16);
 };

@@ -14,8 +14,8 @@
 
 // Redéfinition des fonctions d'initialisation de vecteur
 #define d128_set( i0, i1 )  _mm_set_pd  ((double) i0, (double) i1)
-#define d128_set_r(i0, i1 ) _mm_setr_pd ((double) i0, (double) i1)  //reverse
-#define d128_set_zero() _mm_setzero_pd()                            //empty
+#define d128_setr(i0, i1 ) _mm_setr_pd ((double) i0, (double) i1)  //reverse
+#define d128_setzero() _mm_setzero_pd()                            //empty
 
 // Redéfinition des fonctions d'addition parallèle de vecteurs
 #define d128_add( x, y )    _mm_add_pd    ( (__m128d) x, (__m128d) y )
@@ -39,5 +39,5 @@
 class D128
 {
     public:
-        static void print_2d(d128 reg, int base);
+        static void print_2d(d128 reg, int base = 16);
 };
