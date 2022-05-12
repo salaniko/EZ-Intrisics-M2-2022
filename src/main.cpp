@@ -4,13 +4,9 @@
 #include <inttypes.h>
 #include <math.h>
 #include <sys/time.h>
-
 #include "i128.hpp"
 #include "f128.hpp"
 #include "d128.hpp"
-#include <iostream>
-#include <stdint.h>
-#include <string.h>
 
 using namespace std;
 
@@ -122,6 +118,7 @@ int main(int argc, char const *argv[])
     D128::print_2d(regD,2);
     D128::print_2d(regD,10);
     D128::print_2d(regD,16);
+}
 
     //Registre avec 4 floats (32 bits)
     f128 regF;
