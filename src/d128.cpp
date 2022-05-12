@@ -22,7 +22,7 @@ void D128::print_2d(d128 _reg, int _base)
             {
                 //conversion du double en entier pour exploiter de bits
                 uint64_t u;
-                memcpy(&u, &val[i], sizeof(&val[i]));
+                memcpy(&u, &val[i], sizeof(val[i]));
 
                 for (int j = 64; j >= 0; j--)
                 {

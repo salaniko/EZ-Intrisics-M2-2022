@@ -5,9 +5,9 @@
 #define f128 __m128
 
 // Redéfinition des fonctions de chargement de vecteur
-#define f128_lda(x)   _mm_load_ps   ((__m128 *) x)
-#define f128_ldu(x)   _mm_loadu_ps  ((__m128 *) x)
-#define f128_ld_1f(x) _mm_load_ss   ((__m128 *) x)
+#define f128_lda(x)   _mm_load_ps   ((float const *) x)
+#define f128_ldu(x)   _mm_loadu_ps  ((float const *) x)
+#define f128_ld_1f(x) _mm_load_ss   ((float const *) x)
 
 // Redéfinition des fonctions de stockage dans un vecteur
 #define f128_storea( x, y ) _mm_store_ps  ( (float *) x, (__m128) y )
