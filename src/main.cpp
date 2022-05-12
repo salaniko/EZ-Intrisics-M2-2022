@@ -29,7 +29,7 @@ int main(int argc, char const *argv[])
     i128 reg_add = i128_add_d( reg_d1, reg_d2 );
     I128::print_4d(reg_add, 10);
 
-    //Initialisation du registre avec 2 doubles
+    //Registre avec 2 doubles (64 bits)
     d128 regD;
     regD = d128_set(1.5, 0.8);
 
@@ -37,7 +37,7 @@ int main(int argc, char const *argv[])
     D128::print_2d(regD,10);
     D128::print_2d(regD,16);
 
-    //Initialisation du registre avec 4 floats
+    //Registre avec 4 floats (32 bits)
     f128 regF;
     regF = f128_set(0.8f, 0.5f, 0.5f, 0.5f);
 
