@@ -4,13 +4,9 @@
 #include <inttypes.h>
 #include <math.h>
 #include <sys/time.h>
-
 #include "i128.hpp"
 #include "f128.hpp"
 #include "d128.hpp"
-#include <iostream>
-#include <stdint.h>
-#include <string.h>
 
 using namespace std;
 
@@ -68,18 +64,17 @@ void test_i128()
 
 void test_f128()
 {
+    //Registre avec 4 floats (32 bits)
+    f128 regF;
+    regF = f128_set_4f(0.8f, 0.5f, 0.5f, 0.5f);
 
+    F128::print_4f(regF,2);
+    F128::print_4f(regF,10);
+    F128::print_4f(regF,16);
 }
 
 void test_d128()
 {
-
-}
-
-int main(int argc, char const *argv[])
-{   
-    test_i128();
-
     //Registre avec 2 doubles (64 bits)
     d128 regD;
     regD = d128_set(1.5, 0.8);
@@ -87,14 +82,14 @@ int main(int argc, char const *argv[])
     D128::print_2d(regD,2);
     D128::print_2d(regD,10);
     D128::print_2d(regD,16);
+}
 
-    //Registre avec 4 floats (32 bits)
-    f128 regF;
-    regF = f128_set(0.8f, 0.5f, 0.5f, 0.5f);
-
-    F128::print_4f(regF,2);
-    F128::print_4f(regF,10);
-    F128::print_4f(regF,16);
+int main(int argc, char const *argv[])
+{
+    //Fonctions de test en cpp
+    test_i128();
+    test_f128();
+    test_d128();
 
     return 0;
 }
