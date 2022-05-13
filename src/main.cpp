@@ -64,32 +64,69 @@ void test_i128()
 
 void test_f128()
 {
-    //Registre avec 4 floats (32 bits)
-    f128 regF;
-    regF = f128_set_4f(0.8f, 0.5f, 0.5f, 0.5f);
+    srand48(0);
+    double e, s;
+    float *a, *b;
+    float *pA, *pB;
+    f128 rA, rB;
 
-    F128::print_4f(regF,2);
-    F128::print_4f(regF,10);
-    F128::print_4f(regF,16);
+    const int vector_size = 1000000;
+
+    a = (float*) _mm_malloc (vector_size*sizeof(float), 32);
+    b = (float*) _mm_malloc (vector_size*sizeof(float), 32);
+
+    for (int i=0; i<vector_size; i++)
+    {
+        a[i] = fabs(drand48());
+    }
+
+    pA = a; pB = b;
+
+    s = getCurrentTime();
+    for (int i=0; i<vector_size; i+=4)
+    {
+        rA   = f128_lda(pA);
+        rB   = _mm_sqrt_ps(_mm_sqrt_ps(_mm_sqrt_ps(rA)));
+        f128_storea(pB,rB);
+        pA += 4;
+        pB += 4;
+    }
+    e = getCurrentTime();
+
+    cout << "Test f128: " << (e-s)*1000 << " ms\n";
+
+    _mm_free(a);
+    _mm_free(b);
+
 }
 
 void test_d128()
 {
+
+}
+
+int main(int argc, char const *argv[])
+{   
+    test_i128();
+    test_f128();
+
+    /*
     //Registre avec 2 doubles (64 bits)
     d128 regD;
-    regD = d128_set(1.5, 0.8);
+    regD = d128_set_2d(1.5, 0.8);
 
     D128::print_2d(regD,2);
     D128::print_2d(regD,10);
     D128::print_2d(regD,16);
 }
 
-int main(int argc, char const *argv[])
-{
-    //Fonctions de test en cpp
-    test_i128();
-    test_f128();
-    test_d128();
+    //Registre avec 4 floats (32 bits)
+    f128 regF;
+    regF = f128_set_4f(0.8f, 0.5f, 0.5f, 0.5f);
+
+    F128::print_4f(regF,2);
+    F128::print_4f(regF,10);
+    F128::print_4f(regF,16);*/
 
     return 0;
 }
