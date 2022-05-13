@@ -11,9 +11,9 @@
 #define f128_ld_1f(x) _mm_load_ss  ( (float const *) x )
 
 // Redéfinition des fonctions de stockage dans un vecteur
-#define f128_storea   ( x, y ) _mm_store_ps  ( (float *) x, (__m128) y )
-#define f128_storeu   ( x, y ) _mm_storeu_ps ( (float *) x, (__m128) y )
-#define f128_store_1f ( x, y ) _mm_store_ss  ( (float *) x, (__m128) y )
+#define f128_storea( x, y ) _mm_store_ps  ( (float *) x, (__m128) y )
+#define f128_storeu( x, y ) _mm_storeu_ps ( (float *) x, (__m128) y )
+#define f128_store_1f( x, y ) _mm_store_ss  ( (float *) x, (__m128) y )
 
 // Redéfinition des fonctions d'initialisation de vecteur
 #define f128_set_4f  ( i0, i1, i2, i3 ) _mm_set_ps     ((float) i0, (float) i1, (float) i2, (float) i3) //set 4 float
@@ -45,8 +45,8 @@
 #define f128_xor    ( x, y ) _mm_xor_pd    ( (__m128) x, (__m128) y )
 
 // Redéfinition de fonctions mathématiques
-#define d128_sqrt_4f ( x ) _mm_sqrt_ps ( (__m128) x )
-#define d128_sqrt_1f ( x ) _mm_sqrt_ss ( (__m128) x )
+#define d128_sqrt_4f( x ) _mm_sqrt_ps ( (__m128) x )
+#define d128_sqrt_1f( x ) _mm_sqrt_ss ( (__m128) x )
 
 class F128
 {
