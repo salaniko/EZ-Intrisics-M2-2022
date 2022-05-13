@@ -6,9 +6,9 @@
 #define d128 __m128d
 
 // Redéfinition des fonctions de chargement de vecteur
-#define d128_lda(x)   _mm_load_pd  ( (__m128d *) x )
-#define d128_ldu(x)   _mm_loadu_pd ( (__m128d *) x )
-#define d128_ld_1d(x) _mm_load_sd  ( (__m128d *) x )
+#define d128_lda(x)   _mm_load_pd  ( (double const *) x )
+#define d128_ldu(x)   _mm_loadu_pd ( (double const *) x )
+#define d128_ld_1d(x) _mm_load_sd  ( (double const *) x )
 
 // Redéfinition des fonctions de stockage dans un vecteur
 #define d128_storea( x, y )   _mm_store_pd  ( (double *) x, (__m128d) y )   //alignés
@@ -26,15 +26,15 @@
 #define d128_add_1d( x, y ) _mm_add_sd    ( (__m128d) x, (__m128d) y )
 #define d128_addsub( x, y ) _mm_addsub_pd ( (__m128d) x, (__m128d) y )
 
-// Redéfinition des fonctions de soustraction
+// Redéfinition des fonctions de soustraction parallèle de vecteurs
 #define d128_sub_2d( x, y ) _mm_sub_pd ( (__m128d) x, (__m128d) y )
 #define d128_sub_1d( x, y ) _mm_sub_sd ( (__m128d) x, (__m128d) y )
 
-// Redéfinition des fonctions de division
+// Redéfinition des fonctions de division parallèle de vecteurs
 #define d128_div_2d( x, y ) _mm_div_pd ( (__m128d) x, (__m128d) y )
 #define d128_div_1d( x, y ) _mm_div_sd ( (__m128d) x, (__m128d) y )
 
-// Redéfinition des fonctions de multiplication
+// Redéfinition des fonctions de multiplication parallèle de vecteurs
 #define d128_mul_2d( x, y ) _mm_mul_pd ( (__m128d) x, (__m128d) y )
 #define d128_mul_1d( x, y ) _mm_mul_sd ( (__m128d) x, (__m128d) y )
 
