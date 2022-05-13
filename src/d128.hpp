@@ -18,7 +18,7 @@
 // Redéfinition des fonctions d'initialisation de vecteur
 #define d128_set_2d( i0, i1 ) _mm_set_pd     ( (double) i0, (double) i1 )  //set 2 doubles
 #define d128_set_1d( i0 )     _mm_set_sd     ( (double) i0)                //set 1 double
-#define d128_setr( i0, i1 )   _mm_setr_pd    ( (double) i0, (double) i1 )  //set en reverse
+#define d128_set_r( i0, i1 )   _mm_setr_pd    ( (double) i0, (double) i1 )  //set en reverse
 #define d128_setzero ()       _mm_setzero_pd ()                            //set vide
 
 // Redéfinition des fonctions d'addition parallèle de vecteurs
@@ -47,6 +47,10 @@
 // Redéfinition de fonctions mathématiques
 #define d128_sqrt_2d( x )    _mm_sqrt_pd ( (__m128d) x )
 #define d128_sqrt_1d( x, y ) _mm_sqrt_sd ( (__m128d) x, (__m128d) y )
+#define d128_min_2d( x )     _mm_min_pd  ( (__m128d) x )
+#define d128_min_1d( x )     _mm_min_sd  ( (__m128d) x )
+#define d128_max_2d( x )     _mm_max_pd  ( (__m128d) x )
+#define d128_max_1d( x )     _mm_max_sd  ( (__m128d) x )
 
 class D128
 {

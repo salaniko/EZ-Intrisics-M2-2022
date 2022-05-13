@@ -20,6 +20,7 @@
     _mm_set_epi16((short) i0, (short) i1, (short) i2, (short) i3, (short) i4, (short) i5, (short) i6, (short) i7)
 #define i128_set_d( i0, i1, i2, i3 ) _mm_set_epi32( (int) i0, (int) i1, (int) i2, (int) i3 )
 #define i128_set_q( i0, i1 ) _mm_set_epi64( (__m64) i0, (__m64) i1 )
+#define i128_setzero() _mm_setzero_si128 ()
 
 // Redéfinition des fonctions d'initialisation (reverse) de vecteur 
 #define i128_setr_b( i0, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15 ) \

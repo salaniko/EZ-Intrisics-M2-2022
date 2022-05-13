@@ -40,15 +40,19 @@
 
 // Redéfinition des fonctions logiques
 #define f128_and( x, y ) _mm_and_ps    ( (__m128) x, (__m128) y )
-#define f128_andnot( x, y ) _mm_andnot_ps ( (__m128) x, (__m128) y )
+#define f128_nand( x, y ) _mm_andnot_ps ( (__m128) x, (__m128) y )
 #define f128_or( x, y ) _mm_or_pd     ( (__m128) x, (__m128) y )
 #define f128_xor( x, y ) _mm_xor_pd    ( (__m128) x, (__m128) y )
 
 // Redéfinition de fonctions mathématiques
-#define d128_sqrt_4f( x ) _mm_sqrt_ps ( (__m128) x )
-#define d128_sqrt_1f( x ) _mm_sqrt_ss ( (__m128) x )
+#define f128_sqrt_4f( x ) _mm_sqrt_ps ( (__m128) x )
+#define f128_sqrt_1f( x ) _mm_sqrt_ss ( (__m128) x )
+#define f128_min_4f( x )  _mm_min_ps  ( (__m128) x )
+#define f128_min_1f( x )  _mm_min_ss  ( (__m128) x )
+#define f128_max_4f( x )  _mm_max_ps  ( (__m128) x )
+#define f128_max_1f( x )  _mm_max_ss  ( (__m128) x )
 
 class F128 {
-public:
-    static void print_4f(f128 reg, int base = 16);
+    public:
+        static void print_4f(f128 reg, int base = 16);
 };
