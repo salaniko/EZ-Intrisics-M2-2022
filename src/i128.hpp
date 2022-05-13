@@ -1,5 +1,7 @@
 // i128.h
 #include <emmintrin.h>
+#include <smmintrin.h>
+#include <immintrin.h>
 
 // Redéfinition du type i128 vecteur SSE de 128 bits contenant des entiers
 #define i128 __m128i
@@ -42,6 +44,20 @@
 #define i128_sub_w( x, y ) _mm_sub_epi16 ( (__m128i) x, (__m128i) y )
 #define i128_sub_d( x, y ) _mm_sub_epi32 ( (__m128i) x, (__m128i) y )
 #define i128_sub_q( x, y ) _mm_sub_epi64 ( (__m128i) x, (__m128i) y )
+
+// Redéfinition des fonctions logiques
+#define i128_and( x, y ) _mm_and_si128 ( (__m128i) x, (__m128i) y )
+#define i128_nand( x, y ) _mm_andnot_si128 ( (__m128i) x, (__m128i) y )
+#define i128_or( x, y ) _mm_or_si128 ( (__m128i) x, (__m128i) y )
+#define i128_xor( x, y ) _mm_xor_si128 ( (__m128i) x, (__m128i) y )
+
+// Redéfinition des fonctions mathématiques
+#define i128_min_signed_b( x, y ) _mm_min_epi8 ( (__m128i) x, (__m128i) y )
+#define i128_min_signed_w( x, y ) _mm_min_epi16 ( (__m128i) x, (__m128i) y )
+#define i128_min_signed_d( x, y ) _mm_min_epi32 ( (__m128i) x, (__m128i) y )
+#define i128_min_unsigned_b( x, y ) _mm_min_epu8 ( (__m128i) x, (__m128i) y )
+#define i128_min_unsigned_w( x, y ) _mm_min_epu16 ( (__m128i) x, (__m128i) y )
+#define i128_min_unsigned_d( x, y ) _mm_min_epu32 ( (__m128i) x, (__m128i) y )
 
 
 class I128

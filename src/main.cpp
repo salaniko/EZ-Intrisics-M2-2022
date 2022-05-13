@@ -10,24 +10,23 @@
 
 using namespace std;
 
-double getCurrentTime(){
-  struct timeval curr;
-  struct timezone tz;
-  gettimeofday(&curr, &tz);
-  double tmp = static_cast<double>(curr.tv_sec) * static_cast<double>(1000000)
+double getCurrentTime()
+{
+    struct timeval curr;
+    struct timezone tz;
+    gettimeofday(&curr, &tz);
+    double tmp = static_cast<double>(curr.tv_sec) * static_cast<double>(1000000)
              + static_cast<double>(curr.tv_usec);
-  return tmp*1e-6;
+    return tmp*1e-6;
 }
 
-void test_i128()
+void test_i128(int vector_size)
 {
     srand48(0);
     double e, s;
     int32_t *a, *b, *c;
     int32_t *pA, *pB, *pC;
     i128 rA, rB, rC;
-
-    const int vector_size = 1000000;
 
     a = (int32_t*) _mm_malloc (vector_size*sizeof(int32_t), 32);
     b = (int32_t*) _mm_malloc (vector_size*sizeof(int32_t), 32);
@@ -62,15 +61,13 @@ void test_i128()
 
 }
 
-void test_f128()
+void test_f128(int vector_size)
 {
     srand48(0);
     double e, s;
     float *a, *b;
     float *pA, *pB;
     f128 rA, rB;
-
-    const int vector_size = 1000000;
 
     a = (float*) _mm_malloc (vector_size*sizeof(float), 32);
     b = (float*) _mm_malloc (vector_size*sizeof(float), 32);
@@ -86,7 +83,7 @@ void test_f128()
     for (int i=0; i<vector_size; i+=4)
     {
         rA   = f128_lda(pA);
-        rB   = _mm_sqrt_ps(_mm_sqrt_ps(_mm_sqrt_ps(rA)));
+        rB   = d128_sqrt_4f(d128_sqrt_4f(d128_sqrt_4f(rA)));
         f128_storea(pB,rB);
         pA += 4;
         pB += 4;
@@ -107,8 +104,10 @@ void test_d128()
 
 int main(int argc, char const *argv[])
 {   
-    test_i128();
-    test_f128();
+    const int vector_size = 10000000;
+
+    test_i128(vector_size);
+    test_f128(vector_size);
 
     /*
     //Registre avec 2 doubles (64 bits)
@@ -118,7 +117,6 @@ int main(int argc, char const *argv[])
     D128::print_2d(regD,2);
     D128::print_2d(regD,10);
     D128::print_2d(regD,16);
-}
 
     //Registre avec 4 floats (32 bits)
     f128 regF;
