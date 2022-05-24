@@ -6,9 +6,9 @@
 #define d128 __m128d
 
 // Redéfinition des fonctions de chargement de vecteur
-#define d128_lda(x)   _mm_load_pd  ( (double const *) x )
-#define d128_ldu(x)   _mm_loadu_pd ( (double const *) x )
-#define d128_ld_1d(x) _mm_load_sd  ( (double const *) x )
+#define d128_loada(x)   _mm_load_pd  ( (double const *) x )
+#define d128_loadu(x)   _mm_loadu_pd ( (double const *) x )
+#define d128_load_1d(x) _mm_load_sd  ( (double const *) x )
 
 // Redéfinition des fonctions de stockage dans un vecteur
 #define d128_storea( x, y )   _mm_store_pd  ( (double *) x, (__m128d) y )   //alignés
@@ -18,13 +18,13 @@
 // Redéfinition des fonctions d'initialisation de vecteur
 #define d128_set_2d( i0, i1 ) _mm_set_pd     ( (double) i0, (double) i1 )  //set 2 doubles
 #define d128_set_1d( i0 )     _mm_set_sd     ( (double) i0)                //set 1 double
-#define d128_set_r( i0, i1 )   _mm_setr_pd    ( (double) i0, (double) i1 )  //set en reverse
-#define d128_setzero ()       _mm_setzero_pd ()                            //set vide
+#define d128_setr( i0, i1 )   _mm_setr_pd    ( (double) i0, (double) i1 )  //set en reverse
+#define d128_set_zero ()       _mm_setzero_pd ()                            //set vide
 
 // Redéfinition des fonctions d'addition parallèle de vecteurs
 #define d128_add_2d( x, y ) _mm_add_pd    ( (__m128d) x, (__m128d) y )
 #define d128_add_1d( x, y ) _mm_add_sd    ( (__m128d) x, (__m128d) y )
-#define d128_addsub( x, y ) _mm_addsub_pd ( (__m128d) x, (__m128d) y )
+#define d128_add_sub( x, y ) _mm_addsub_pd ( (__m128d) x, (__m128d) y )
 
 // Redéfinition des fonctions de soustraction parallèle de vecteurs
 #define d128_sub_2d( x, y ) _mm_sub_pd ( (__m128d) x, (__m128d) y )
