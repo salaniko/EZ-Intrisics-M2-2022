@@ -59,7 +59,7 @@ void I128::print_8w(i128 _reg, int _base)
         case 2:
             int a;
             printf("Binary: ");
-            for(int i=7; i<=0; i++)
+            for(int i=7; i>=0; i--)
             {
                 for (int j = 15; j >= 0; j--)
                 {
@@ -100,7 +100,7 @@ void I128::print_4d(i128 _reg, int _base)
         case 2:
             int a;
             printf("Binary: ");
-            for(int i=3; i<=0; i++)
+            for(int i=3; i>=0; i--)
             {
                 for (int j = 31; j >= 0; j--)
                 {
@@ -141,7 +141,7 @@ void I128::print_2q(i128 _reg, int _base)
         case 2:
             int a;
             printf("Binary: ");
-            for(int i=1; i>=0; i++)
+            for(int i=1; i>=0; i--)
             {
                 for (int j = 63; j >= 0; j--)
                 {

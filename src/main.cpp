@@ -1,5 +1,7 @@
 #include <iostream>
 #include <stdint.h>
+#include <emmintrin.h>
+#include <immintrin.h>
 #include <string.h>
 #include <inttypes.h>
 #include <math.h>
@@ -9,6 +11,22 @@
 #include "d128.hpp"
 
 using namespace std;
+
+
+void test_printing()
+{
+    printf("Vecteur SSE - 4 words (entiers)\n");
+    i128 regA = i128_set_d(1000, 2000, 3000, 4000);
+    I128::print_4d(regA, 2);
+    I128::print_4d(regA, 10);
+    I128::print_4d(regA, 16);
+
+    printf("\nVecteur SSE - 2 doubles (flotants double précision)\n");
+    d128 regB = d128_set_2d(3.14, 12345.6789);
+    D128::print_2d(regB, 2);
+    D128::print_2d(regB, 10);
+    D128::print_2d(regB, 16);
+}
 
 double getCurrentTime()
 {
@@ -82,17 +100,17 @@ void test_i128_old(int vector_size){
     s = getCurrentTime();
     for (int i=0; i<vector_size; i+=4)
     {
-        rA = _mm_load_si128((__m128i*)&pA[i]);
-        rB = _mm_load_si128((__m128i*)&pB[i]);
-        rC = _mm_add_epi32(rA, rB);
-        _mm_store_si128((__m128i*)&pC, rC);
+        //rA = _mm_load_si128((const __m128i*)pA[i]);
+        //rB = _mm_load_si128((__m128i*)&pB[i]);
+        //rC = _mm_add_epi32(rA, rB);
+        //_mm_store_si128((__m128i*)&pC, rC);
         pA += 4;
         pB += 4;
         pC += 4;
     }
     e = getCurrentTime();
 
-    cout << "Test i128: " << (e-s)*1000 << " ms\n";
+    cout << "Test i128 old: " << (e-s)*1000 << " ms\n";
 
     _mm_free(a);
     _mm_free(b);
@@ -176,12 +194,19 @@ void test_d128(int vector_size)
 
 int main(int argc, char const *argv[])
 {   
+
+    printf("Tests fonctions d'affichage des vecteurs :\n\n");
+
+    test_printing();
+
     const int vector_size = 10000000;
 
-    printf("TEST SUR LES ENTIER :\n");
+    printf("\nTests redéfinitions intrinsics : \n\n");
+
+    printf("TEST SUR LES ENTIERS :\n");
     test_i128(vector_size);
 
-    printf("TEST SUR LES ENTIER OLD :\n");
+    printf("TEST SUR LES ENTIERS OLD :\n");
     test_i128_old(vector_size);
 
     printf("TEST SUR LES FLOTTANTS :\n");
