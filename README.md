@@ -28,3 +28,9 @@ Dans un terminal, a la racine du projet, tapez :
 ```shell
 make
 ```
+
+Ensuite pour lancer le programme il suffit de taper la commande suivante au même endroit :
+
+```shell
+./bin/main.exe
+```
