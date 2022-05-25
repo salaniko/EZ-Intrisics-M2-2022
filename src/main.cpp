@@ -12,7 +12,6 @@
 
 using namespace std;
 
-
 void test_printing()
 {
     printf("Vecteur SSE - 4 words (entiers)\n");
@@ -61,8 +60,8 @@ void test_i128(int vector_size)
     s = getCurrentTime();
     for (int i=0; i<vector_size; i+=4)
     {
-        rA = i128_lda(pA);
-        rB = i128_lda(pB);
+        rA = i128_loada(pA);
+        rB = i128_loada(pB);
         rC = i128_add_d(rA, rB);
         i128_storea(pC, rC);
         pA += 4;
@@ -100,10 +99,10 @@ void test_i128_old(int vector_size){
     s = getCurrentTime();
     for (int i=0; i<vector_size; i+=4)
     {
-        //rA = _mm_load_si128((const __m128i*)pA[i]);
-        //rB = _mm_load_si128((__m128i*)&pB[i]);
-        //rC = _mm_add_epi32(rA, rB);
-        //_mm_store_si128((__m128i*)&pC, rC);
+        rA = _mm_load_si128((const __m128i*)&pA[i]);
+        rB = _mm_load_si128((const __m128i*)&pB[i]);
+        rC = _mm_add_epi32(rA, rB);
+        _mm_store_si128((__m128i*)&pC, rC);
         pA += 4;
         pB += 4;
         pC += 4;
@@ -138,7 +137,7 @@ void test_f128(int vector_size)
     s = getCurrentTime();
     for (int i=0; i<vector_size; i+=4)
     {
-        rA   = f128_lda(pA);
+        rA   = f128_loada(pA);
         rB   = f128_sqrt_4f(f128_sqrt_4f(f128_sqrt_4f(rA)));
         f128_storea(pB,rB);
         pA += 4;
@@ -150,6 +149,41 @@ void test_f128(int vector_size)
 
     sse_free(a);
     sse_free(b);
+}
+
+void test_f128_old(int vector_size)
+{
+    srand48(0);
+    double e, s;
+    float *a, *b;
+    float *pA, *pB;
+    f128 rA, rB;
+
+    a = (float*) _mm_malloc(vector_size*sizeof(float), 32);
+    b = (float*) _mm_malloc(vector_size*sizeof(float), 32);
+
+    for (int i=0; i<vector_size; i++)
+    {
+        a[i] = fabs(drand48());
+    }
+
+    pA = a; pB = b;
+
+    s = getCurrentTime();
+    for (int i=0; i<vector_size; i+=4)
+    {
+        rA   = _mm_load_ps(pA);
+        rB   = _mm_sqrt_ps(_mm_sqrt_ps(_mm_sqrt_ps(rA)));
+        _mm_store_ps(pB,rB);
+        pA += 4;
+        pB += 4;
+    }
+    e = getCurrentTime();
+
+    cout << "Test f128: " << (e-s)*1000 << " ms\n";
+
+    _mm_free(a);
+    _mm_free(b);
 }
 
 void test_d128(int vector_size)
@@ -176,8 +210,8 @@ void test_d128(int vector_size)
 
     for (int i=0; i<vector_size; i+=2)
     {
-        rA   = d128_lda(pA);
-        rB   = d128_lda(pB);
+        rA   = d128_loada(pA);
+        rB   = d128_loada(pB);
         rC   = d128_div_2d(rA, rB);
         d128_storea(pC,rC);
         pA += 2;
@@ -192,9 +226,48 @@ void test_d128(int vector_size)
     sse_free(c);
 }
 
-int main(int argc, char const *argv[])
-{   
+void test_d128_old(int vector_size)
+{
+    srand48(0);
+    double e, s;
+    double *a, *b, *c;
+    double *pA, *pB, *pC;
+    d128 rA, rB, rC;
 
+    a = (double*) _mm_malloc(vector_size*sizeof(double), 64);
+    b = (double*) _mm_malloc(vector_size*sizeof(double), 64);
+    c = (double*) _mm_malloc(vector_size*sizeof(double), 64);
+
+    for (int i=0; i<vector_size; i++)
+    {
+        a[i] = fabs(drand48());
+        b[i] = fabs(drand48());
+    }
+
+    pA = a; pB = b; pC = c;
+
+    s = getCurrentTime();
+
+    for (int i=0; i<vector_size; i+=2)
+    {
+        rA   = _mm_load_pd(pA);
+        rB   = _mm_load_pd(pB);
+        rC   = _mm_div_pd(rA, rB);
+        _mm_store_pd(pC,rC);
+        pA += 2;
+        pB += 2;
+    }
+    e = getCurrentTime();
+
+    cout << "Test d128: " << (e-s)*1000 << " ms\n";
+
+    _mm_free(a);
+    _mm_free(b);
+    _mm_free(c);
+}
+
+int main(int argc, char const *argv[])
+{
     printf("Tests fonctions d'affichage des vecteurs :\n\n");
 
     test_printing();
@@ -206,14 +279,20 @@ int main(int argc, char const *argv[])
     printf("TEST SUR LES ENTIERS :\n");
     test_i128(vector_size);
 
-    printf("TEST SUR LES ENTIERS OLD :\n");
-    test_i128_old(vector_size);
+    //printf("TEST SUR LES ENTIERS OLD :\n");
+    //test_i128_old(vector_size);
 
     printf("TEST SUR LES FLOTTANTS :\n");
     test_f128(vector_size);
 
+    printf("TEST SUR LES FLOTTANTS OLD:\n");
+    test_f128_old(vector_size);
+
     printf("TEST SUR LES DOUBLES :\n");
     test_d128(vector_size);
+
+    printf("TEST SUR LES DOUBLES OLD:\n");
+    test_d128_old(vector_size);
 
     return 0;
 }
